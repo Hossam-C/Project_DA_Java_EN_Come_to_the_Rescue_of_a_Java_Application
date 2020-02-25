@@ -1,10 +1,9 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class AnalyticsCounter {
 	private static int headacheCount = 0;	// initialize to 0
@@ -14,10 +13,15 @@ public class AnalyticsCounter {
 	public static void main(String args[]) throws Exception {
 
 		List<String> resultListe = new ArrayList<String>();
+		TreeMap<String,Integer> tableSympt = new TreeMap<String,Integer>();
 
 		// Read and stock the symptom file
 		ISymptomReader liste = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
 		resultListe = liste.getSymptoms();
+
+		//Formating the table list
+		IFormat FormatTable = new FormatingResult(resultListe);
+		tableSympt = FormatTable.formatListe();
 
 		int i = 0;	// set i to 0
 		while ( i < resultListe.size())  {
