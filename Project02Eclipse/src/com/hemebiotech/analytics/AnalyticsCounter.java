@@ -1,31 +1,27 @@
 package com.hemebiotech.analytics;
 
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
+/**
+ * Main function
+ *
+ *@author Hossam CHENAOUI
+ *
+ *@description
+ */
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
-	public static void main(String args[]) throws Exception {
 
-		List<String> resultListe = new ArrayList<String>();
-		TreeMap<String,Integer> tableSympt = new TreeMap<String,Integer>();
+	public static void main(String args[])  throws Exception{
 
-		// Read and stock the symptom file
-		ISymptomReader liste = new ReadSymptomDataFromText("Project02Eclipse/symptoms.txt");
-		resultListe = liste.getSymptoms();
+		/**
+		 *
+		 * @param symptomFilePath : File Path of the symptom file
+		 * @param resultFilePath  : File Path of the result file
+		 */
+		// Initialize the files paths / The files are in the local libraries.
+		String symptomFilePath = "symptoms.txt";
+		String resultFilePath = "result.out";
 
-		//Formating the table list
-		IFormat FormatTable = new FormatingResult(resultListe);
-		tableSympt = FormatTable.formatListe();
-
-		//Write the result file
-		IWriter writeResult = new Writer(tableSympt , "Project02Eclipse/result.out");
-		writeResult.writeSympt();
-
+		Counter count = new Counter(symptomFilePath, resultFilePath);
+		count.count();
 	}
 }
