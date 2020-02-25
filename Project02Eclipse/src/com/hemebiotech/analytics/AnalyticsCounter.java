@@ -16,7 +16,7 @@ public class AnalyticsCounter {
 		TreeMap<String,Integer> tableSympt = new TreeMap<String,Integer>();
 
 		// Read and stock the symptom file
-		ISymptomReader liste = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		ISymptomReader liste = new ReadSymptomDataFromText("Project02Eclipse/symptoms.txt");
 		resultListe = liste.getSymptoms();
 
 		//Formating the table list
