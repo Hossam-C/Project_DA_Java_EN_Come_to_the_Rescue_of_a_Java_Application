@@ -3,6 +3,8 @@ package com.hemebiotech.analytics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AnalyticsCounter {
 	private static int headacheCount = 0;	// initialize to 0
@@ -10,26 +12,28 @@ public class AnalyticsCounter {
 	private static int pupilCount = 0;		// initialize to 0
 	
 	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
-		String line = reader.readLine();
+
+		List<String> resultListe = new ArrayList<String>();
+
+		// Read and stock the symptom file
+		ISymptomReader liste = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		resultListe = liste.getSymptoms();
 
 		int i = 0;	// set i to 0
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
+		while ( i < resultListe.size())  {
+			System.out.println("symptom from file: " + resultListe.get(i));
+			if (resultListe.get(i).equals("headache")) {
 				headacheCount++;
 				System.out.println("number of headaches: " + headacheCount);
 			}
-			else if (line.equals("rash")) {
+			else if (resultListe.get(i).equals("rash")) {
 				rashCount++;
 			}
-			else if (line.contains("pupils")) {
+			else if (resultListe.get(i).contains("pupils")) {
 				pupilCount++;
 			}
+			i++;	// increment i
 
-			line = reader.readLine();	// get another symptom
 		}
 		
 		// next generate output
