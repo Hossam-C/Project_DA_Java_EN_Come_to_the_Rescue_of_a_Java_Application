@@ -23,28 +23,9 @@ public class AnalyticsCounter {
 		IFormat FormatTable = new FormatingResult(resultListe);
 		tableSympt = FormatTable.formatListe();
 
-		int i = 0;	// set i to 0
-		while ( i < resultListe.size())  {
-			System.out.println("symptom from file: " + resultListe.get(i));
-			if (resultListe.get(i).equals("headache")) {
-				headacheCount++;
-				System.out.println("number of headaches: " + headacheCount);
-			}
-			else if (resultListe.get(i).equals("rash")) {
-				rashCount++;
-			}
-			else if (resultListe.get(i).contains("pupils")) {
-				pupilCount++;
-			}
-			i++;	// increment i
+		//Write the result file
+		IWriter writeResult = new Writer(tableSympt , "Project02Eclipse/result.out");
+		writeResult.writeSympt();
 
-		}
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("Project02Eclipse/result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
 	}
 }
