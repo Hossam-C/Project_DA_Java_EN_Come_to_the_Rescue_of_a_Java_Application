@@ -26,7 +26,12 @@ public class Counter {
         TreeMap<String,Integer> tableSympt = new TreeMap<String,Integer>();
 
         // Read and stock the symptom file
-        ISymptomReader liste = new ReadSymptomDataFromText(symptomFilePath);
+        FileReaderFactory fileReaderFactory = new FileReaderFactory();
+        ReadSymptomDataFromFile liste = null;
+
+        liste = fileReaderFactory.getFileType(symptomFilePath);
+
+        //ISymptomReader liste = new ReadSymptomDataFromText(symptomFilePath);
         resultListe = liste.getSymptoms();
 
         //Formating the table list

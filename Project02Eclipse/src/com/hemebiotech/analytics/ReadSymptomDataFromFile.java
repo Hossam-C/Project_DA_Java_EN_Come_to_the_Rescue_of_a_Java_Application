@@ -4,12 +4,12 @@ import java.util.List;
 
 /**
  * This class will be extended for the reading class.
- * For now, there is only the .txt reader, but eventually, other format file will be available
+ * For now, there is only the .txt reader and .csv reader, but eventually, other format file will be available
  *
  */
-public abstract class ReadSymptomDataFromFile {
+public abstract class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filepath;
+	protected String filepath;
 	/**
 	 *
 	 * @param filepath a full or partial path to file with symptom strings in it,

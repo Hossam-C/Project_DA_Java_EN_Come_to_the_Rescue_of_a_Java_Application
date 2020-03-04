@@ -8,22 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class reading for .txt files
+ * Class reading for .CSV files
  *
  */
-public class ReadSymptomDataFromText extends ReadSymptomDataFromFile {
+public class ReadSymptomDataFromCSV extends ReadSymptomDataFromFile {
 
-    protected String filepath;
+    private String filepath;
 
     /**
      *
      * @param filepath a full or partial path to file with symptom strings in it,
      *                 one per line
      */
-    public ReadSymptomDataFromText(String filepath) {
+    public ReadSymptomDataFromCSV(String filepath) {
         super(filepath);
-        this.filepath = super.filepath  ;
-
+        this.filepath = super.filepath;
     }
 
     @Override
