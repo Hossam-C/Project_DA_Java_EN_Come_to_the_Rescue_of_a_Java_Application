@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.exceptions;
 
 /**
  * class exception for empty filepath

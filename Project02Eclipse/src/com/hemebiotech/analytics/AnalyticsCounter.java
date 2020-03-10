@@ -18,8 +18,8 @@ public class AnalyticsCounter {
 		 * @param resultFilePath  : File Path of the result file
 		 */
 		// Initialize the files paths / The files are in the local libraries.
-		String symptomFilePath = "symptoms.txt";
-		//String symptomFilePath = "symptoms.CSV";
+		//String symptomFilePath = "symptoms.txt";
+		String symptomFilePath = "symptoms.CSV";
 		String resultFilePath = "result.out";
 
 		Counter count = new Counter(symptomFilePath, resultFilePath);

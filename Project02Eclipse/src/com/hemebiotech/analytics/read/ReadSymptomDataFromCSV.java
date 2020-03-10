@@ -1,4 +1,7 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.read;
+
+import com.hemebiotech.analytics.exceptions.EmptyException;
+import com.hemebiotech.analytics.exceptions.PathException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,8 +33,9 @@ public class ReadSymptomDataFromCSV extends ReadSymptomDataFromFile {
         ArrayList<String> result = new ArrayList<String>();
         try {
             if (filepath != null) {
+                BufferedReader reader = null;
                 try {
-                    BufferedReader reader = new BufferedReader (new FileReader(filepath));
+                    reader = new BufferedReader(new FileReader(filepath));
                     String line = reader.readLine();
 
                     if (line == null) {
@@ -41,12 +45,17 @@ public class ReadSymptomDataFromCSV extends ReadSymptomDataFromFile {
                         result.add(line);
                         line = reader.readLine();
                     }
-                    reader.close();
+
                 } catch (FileNotFoundException e) {
                     System.out.println("Symptom File not found : please verify the file path.");
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }

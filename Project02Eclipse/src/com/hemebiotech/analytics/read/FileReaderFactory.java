@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.read;
 
 /**
  * Pattern Factory function
@@ -10,8 +10,8 @@ package com.hemebiotech.analytics;
  */
 public class FileReaderFactory {
 
-    public static final String FICTXT = ".TXT";
-    public static final String FICCSV = ".CSV";
+    public static final String FICTXT = "TXT";
+    public static final String FICCSV = "CSV";
 
     /**
      *
@@ -22,9 +22,9 @@ public class FileReaderFactory {
         ReadSymptomDataFromFile readSymptomDataFromFile = null;
 
 
-        String fileType ;
-        int length = filepath.length();
-        fileType = filepath.substring(length - 4, length);
+
+        String[] fileparts = filepath.split("\\.");
+        String fileType  = fileparts[fileparts.length - 1];
         // Sometimes, the name file is written in uppercase, sometimes in lowercase
         // the file extension is converted in uppercase every time
         fileType = fileType.toUpperCase();

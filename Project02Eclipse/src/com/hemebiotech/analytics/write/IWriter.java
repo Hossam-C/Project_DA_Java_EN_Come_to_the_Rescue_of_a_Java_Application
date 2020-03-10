@@ -1,4 +1,6 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.write;
+
+import com.hemebiotech.analytics.exceptions.PathException;
 
 /**
  * Write the result file

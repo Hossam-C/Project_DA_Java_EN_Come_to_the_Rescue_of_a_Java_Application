@@ -1,4 +1,6 @@
-package com.hemebiotech.analytics;
+package com.hemebiotech.analytics.write;
+
+import com.hemebiotech.analytics.exceptions.PathException;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -30,20 +32,13 @@ public class Writer implements IWriter{
     public void writeSympt() {
 
         FileWriter writer = null;
+
         try {
             if (filePath == null) {
                 throw new PathException();
             }
             writer = new FileWriter (filePath);
-        }catch (PathException e) {
-            System.out.println("Result's filepath is not implemented");
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("Symptom File not found : please verify the file path.");
-        }
-        catch (IOException e1) {
-            e1.printStackTrace();
-        }
+
 
         Set<String> kS = tableList.keySet();
 
@@ -54,11 +49,21 @@ public class Writer implements IWriter{
                 e.printStackTrace();
             }
         }
-
-        try {
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }catch (PathException e) {
+            System.out.println("Result's filepath is not implemented");
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Symptom File not found : please verify the file path.");
+        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
